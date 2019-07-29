@@ -1,5 +1,16 @@
-<ul>
-    <li *ngFor="let item of itemList">
-        {{ item.title }}
-    </li>
-</ul>
+<div *ngIf="itemList.length; else noItems">
+    <ul>
+        <li *ngFor="let item of itemList">
+            <span>{{ item.title }}</span> - 
+            <span class="deleteIcon" (click)="removeItem(item.id)">x</span>
+        </li>
+    </ul>
+</div>
+<ng-template #noItems>
+    No items
+</ng-template>
+
+<form [formGroup]="itemForm" (ngSubmit)="processChange(itemForm.value)">
+    <input formControlName="itemTitle" type="text" />
+    <input type="submit" value="Add Item" />
+</form>
