@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Item } from './types';
+import { mockItems } from './mock-items';
 
 @Injectable({
   providedIn: 'root'
@@ -9,20 +10,7 @@ export class ItemService {
   itemList: Array<Item>;
 
   constructor() {
-    this.itemList = [
-      {
-        id: 1,
-        title: 'First item'
-      },
-      {
-        id: 2,
-        title: 'Second item'
-      },
-      {
-        id: 3,
-        title: 'Third item'
-      }
-    ];
+    this.itemList = mockItems;
   }
 
   getItems() {
