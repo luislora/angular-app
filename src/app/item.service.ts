@@ -47,8 +47,6 @@ export class ItemService {
   }
 
   edititem(targetIndex, newTitle) {
-    console.log(targetIndex, newTitle);
-    
     let item = this.itemList.find(item => item.id === targetIndex);
     item.title = newTitle;
   }

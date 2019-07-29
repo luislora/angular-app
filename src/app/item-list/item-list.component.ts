@@ -36,7 +36,8 @@ export class ItemListComponent implements OnInit {
     if (!this.editing) {
       this.itemService.addItem(formValue.itemTitle);
     } else {
-      this.itemService.edititem(this.selectedItem.id, this.itemForm.value.itemTitle);            
+      this.itemService.edititem(this.selectedItem.id, this.itemForm.value.itemTitle);
+      this.editing = false;            
     }
     this.itemForm.reset();
   }
