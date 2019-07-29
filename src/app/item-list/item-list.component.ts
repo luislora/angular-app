@@ -12,6 +12,8 @@ export class ItemListComponent implements OnInit {
 
   itemList: Array<Item>;
   itemForm: FormGroup;
+  selectedItem: Item;
+  editing: Boolean = false;
 
   constructor(
     private itemService: ItemService,
@@ -26,13 +28,25 @@ export class ItemListComponent implements OnInit {
     this.itemList = this.itemService.getItems();
   }
 
-  removeItem(id) {
+  removeItem(id: number) {
     this.itemService.removeItem(id);
   }
 
   processChange(formValue) {
-    this.itemService.addItem(formValue.itemTitle);
+    if (!this.editing) {
+      this.itemService.addItem(formValue.itemTitle);
+    } else {
+      this.itemService.edititem(this.selectedItem.id, this.itemForm.value.itemTitle);            
+    }
     this.itemForm.reset();
+  }
+
+  editItem(targetItem: Item) {
+    this.editing = true;
+    this.selectedItem = targetItem;
+    this.itemForm.setValue({
+      itemTitle: targetItem.title
+    });
   }
 
 }
